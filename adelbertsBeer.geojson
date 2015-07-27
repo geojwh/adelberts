@@ -1,4 +1,3 @@
-var featureLayer = {
 {
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
@@ -851,4 +850,3 @@ var featureLayer = {
 { "type": "Feature", "properties": { "Store": "Zio Carlo", "Address": "1001 W Magnolia Ave", "City": "Fort Worth", "State": "TX", "Zip": 76104, "Lat": 32.730375, "Lon": -97.335229 }, "geometry": { "type": "Point", "coordinates": [ -97.3352288, 32.7303752 ] } }
 ]
 }
-};
