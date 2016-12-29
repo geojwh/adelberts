@@ -1,0 +1,16 @@
+var adelberts =
+{"type": "Feature",
+ "geometry": {
+     "type": "Point",
+     "coordinates": [
+        -97.7199070,
+        30.3825210,
+    ]
+ },
+ "properties": {
+     "title": "Adelberts Brewery World Headquarters",
+     "description": "2314 Rutland Dr #100, Austin, TX 78758",
+     "phone": "(512) 662-1462",
+     "url": "http://adelbertsbeer.com/"
+ }
+};
