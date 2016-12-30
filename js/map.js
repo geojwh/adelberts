@@ -1,4 +1,4 @@
-//create map
+//create map with no default zoom control
 var map = L.map('map', {
     zoomControl: false
 }).setView([30.755, -94.444], 6);
@@ -8,17 +8,16 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-//controls
+//controls - custom zoomhome leaflet control, esri leaflet geoocdoer control
 var zoomHome = L.Control.zoomHome();
 zoomHome.addTo(map);
-
-L.control.locate().addTo(map);
 
 var searchControl = L.esri.Geocoding.geosearch().addTo(map);
 
 var results = L.layerGroup().addTo(map);
 
 //load counties.json, style based on distributor attribute, bindpopup
+var dist =
 L.geoJson(counties, {
     style: function (feature) {
         switch (feature.properties.DIST) {
@@ -59,11 +58,10 @@ L.geoJson(counties, {
                 weight: 1.5
             };
         }
-    },
-    onEachFeature: function (feature, counties) {
-        counties.bindPopup(feature.properties.DIST);
     }
 }).addTo(map);
+
+
 
 //Load states.json and style
 L.geoJson(states, {
