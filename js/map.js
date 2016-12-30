@@ -61,8 +61,6 @@ L.geoJson(counties, {
     }
 }).addTo(map);
 
-
-
 //Load states.json and style
 L.geoJson(states, {
     style: function (feature) {

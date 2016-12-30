@@ -25,57 +25,26 @@ div.box {
     padding: 5px;
 }
 
-
 /* basic positioning */
 
-.legend {
-    list-style: none;
-}
+.legend { list-style: none; }
 
-.legend li {
-    float: left;
-    margin-right: 10px;
-}
+.legend li { float: left; margin-right: 10px; }
 
-.legend span {
-    float: left;
-    width: 20px;
-    height: 15px;
-    margin: 2px;
-}
+.legend span { float: left; width: 20px; height: 15px; margin: 2px; }
 
+/* legend colors */
 
-/* your colors */
+.legend .nm { border: 2px solid #ff9900; }
 
-.legend .nm {
-    border: 2px solid #ff9900;
-}
+.legend .bek { border: 2px solid #00cc66; }
 
-.legend .bek {
-    border: 2px solid #00cc66;
-}
+.legend .soj { border: 2px solid #9933ff; }
 
-.legend .soj {
-    border: 2px solid #9933ff;
-}
+.legend .jack { border: 2px solid #996633; }
 
-.legend .jack {
-    border: 2px solid #996633;
-}
+.legend .lf { border: 2px solid #ff3333; }
 
-.legend .lf {
-    border: 2px solid #ff3333;
-}
+.legend .crafty { border: 2px solid #0066ff; }
 
-.legend .crafty {
-    border: 2px solid #0066ff;
-}
-
-.logo {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    width: 205px;
-    height: 204px;
-    z-index: 999;
-}
+img { width: 20%; height: auto; position: fixed; top: 10px; right: 10px; z-index: 999; max-width: 205px; }
