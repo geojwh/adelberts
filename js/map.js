@@ -22,16 +22,21 @@ L.easyButton('fa-globe fa-lg', function(){
 }).addTo(map);
 
 //load counties.json, style based on distributor attribute, bindpopup
-function addCounties(data, map) {
-    var counties = L.geoJson(data);
-    counties.addTo(map);
+function addData(data, map) {
+    var dataLayer = L.geoJson(data, {
+        onEachFeature: function(feature, layer) {
+            var countyPopup = "<b>Distributor: </b>" + feature.properties.DIST
+                + "<br><b>County: </b>" + feature.properties.COUNTY
+                + "<br><a href='" + feature.properties.URL + "'>More info</a>";
+            layer.bindPopup(countyPopup); }
+        });
+    dataLayer.addTo(map);
 }
 
 $.getJSON("counties.json", function(data) { addData(data, map); });
 
 /*
-var counties = 
-$.getJSON("counties.json", function(data) {
+$.getJSON(counties, function(data) {
     var counties = L.geoJson(data, {
         style: function (feature) {
             switch (feature.properties.DIST) {
@@ -61,10 +66,9 @@ $.getJSON("counties.json", function(data) {
     })
 }).addTo(map);
 */
-//load adelberts marker location marker and popup info
-/*var beer = L.marker([30.3825210, -97.7199070], {title: "Adelberts Brewery"});
+//load adelberts marker location and popup info
+var beer = L.marker([30.3825210, -97.7199070], {title: "Adelberts Brewery"});
 
 var beerContent = "<strong>Adelberts Brewery World Headquarters</strong>" + "<br>" + "2314 Rutland Drive, Suite #100" + "<br>" + "Austin, Texas 78758" + "<br>" + "(512) 662-1462 | <a href='http://adelbertsbeer.com/'>adelbertsbeer.com</a>";
 
 beer.bindPopup(beerContent).addTo(map);
-*/
