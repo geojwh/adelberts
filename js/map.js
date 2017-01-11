@@ -12,63 +12,54 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-//esri leaflet geocoder control
-var searchControl = L.esri.Geocoding.geosearch().addTo(map);
-var results = L.layerGroup().addTo(map);
-
 //custom easy button control, zoom to var bounds
 L.easyButton('fa-globe fa-lg', function(){
     map.fitBounds(bounds)
 }).addTo(map);
 
+//esri leaflet geocoder control
+var searchControl = L.esri.Geocoding.geosearch().addTo(map);
+var results = L.layerGroup().addTo(map);
+
 //load counties.json, style based on distributor attribute, bindpopup
-function addData(data, map) {
-    var dataLayer = L.geoJson(data, {
-        onEachFeature: function(feature, layer) {
-            var countyPopup = "<b>Distributor: </b>" + feature.properties.DIST
-                + "<br><b>County: </b>" + feature.properties.COUNTY
-                + "<br><a href='" + feature.properties.URL + "'>More info</a>";
-            layer.bindPopup(countyPopup); }
-        });
-    dataLayer.addTo(map);
-}
+var countyPopup = function (feature, layer) {
+    layer.bindPopup(feature.properties.COUNTY)
+};
 
-$.getJSON("counties.json", function(data) { addData(data, map); });
-
-/*
-$.getJSON(counties, function(data) {
-    var counties = L.geoJson(data, {
-        style: function (feature) {
-            switch (feature.properties.DIST) {
-            case 'Favorite Brands New Mexico':
-                return { color: "#ff9900", fillOpacity: 0, weight: 2 };
-            case 'L&F Distributors LLC':
-                return { color: "#ff3333", fillOpacity: 0, weight: 2 };
-            case 'Ben E. Keith':
-                return { color: "#00cc66", fillOpacity: 0, weight: 2 };
-            case 'Jack Hilliard Distributing':
-                return { color: "#996633", fillOpacity: 0, weight: 2 };
-            case 'Sons of John':
-                return { color: "#9933ff", fillOpacity: 0, weight: 2 };
-            case 'Crafty Connoisseurs Distributing':
-                return { color: "#0066ff", fillOpacity: 0, weight: 2 };
-            }
+L.geoJson(counties, {
+    onEachFeature: countyPopup,
+    style: function (feature) {
+        switch (feature.properties.DIST) {
+        case 'Favorite Brands New Mexico':
+            return { color: "#ff9900", fillOpacity: 0, weight: 2 };
+        case 'L&F Distributors LLC':
+            return { color: "#ff3333", fillOpacity: 0, weight: 2 };
+        case 'Ben E. Keith':
+            return { color: "#00cc66", fillOpacity: 0, weight: 2 };
+        case 'Jack Hilliard Distributing':
+            return { color: "#996633", fillOpacity: 0, weight: 2 };
+        case 'Sons of John':
+            return { color: "#9933ff", fillOpacity: 0, weight: 2 };
+        case 'Crafty Connoisseurs Distributing':
+            return { color: "#0066ff", fillOpacity: 0, weight: 2 };
         }
-    })
+    }
 }).addTo(map);
-*/
+
 //Load states.json and style
-/*$.geJSON("states.json", function(data) {
-    var states = L.geoJson(states, {
-        style: function (feature) {
-            return { color: "#666666", weight: 2.5, fillOpacity: 0 };
-        }
-    })
+L.geoJson(states, {
+    style: function (feature) {
+        return {color: "#666666", weight: 2.5, fillOpacity: 0, dashArray: "5"};
+    }
 }).addTo(map);
-*/
+
 //load adelberts marker location and popup info
 var beer = L.marker([30.3825210, -97.7199070], {title: "Adelberts Brewery"});
 
 var beerContent = "<strong>Adelberts Brewery World Headquarters</strong>" + "<br>" + "2314 Rutland Drive, Suite #100" + "<br>" + "Austin, Texas 78758" + "<br>" + "(512) 662-1462 | <a href='http://adelbertsbeer.com/'>adelbertsbeer.com</a>";
 
 beer.bindPopup(beerContent).addTo(map);
+
+/*
+
+*/
